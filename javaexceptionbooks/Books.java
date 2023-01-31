@@ -7,7 +7,7 @@ public class Books {
 	private String autore;
 	private String editore;
 	// Costruttore
-	public Books (String titolo, int numeroPagine, String autore, String editore) throws NumberPagesException, TitleException,AutorException {
+	public Books (String titolo, int numeroPagine, String autore, String editore) throws NumberPagesException, TitleException, AutorException {
 		super();
 		validateTitle(titolo);
 		this.titolo = titolo;
@@ -19,7 +19,7 @@ public class Books {
 		
 	}
 	
-  // Metodi set
+  // Metodi validazioni exception
 	public void validateNumberPages(int numeroPagine) throws NumberPagesException{
 		if(numeroPagine < 0) {
 			throw new NumberPagesException(numeroPagine);
@@ -35,23 +35,28 @@ public class Books {
 			throw new AutorException(autore);
 		}
 	}
+	//metodi set
 	public void setNumeroPagine(int numeroPagine) throws NumberPagesException{
 		
 		validateNumberPages(numeroPagine);
 		this.numeroPagine = numeroPagine;
 		
 	}
-	public void setTitolo(String titolo) {
+	public void setTitolo(String titolo) throws TitleException{
+		validateTitle(titolo);
 		this.titolo = titolo;
 	}
-	public void setAutore(String autore) {
+	public void setAutore(String autore) throws AutorException{
+		validateAutor(autore);
+		
 		this.autore = autore;
 	}
-	public void setEditore(String editore) throws AutorException {
+	public void setEditore(String editore)  {
 		this.editore = editore;
 	}
 	// Metodi get
 	public String getTitolo() {
+		
 		return titolo;
 	}
 	public int getPagine() {
